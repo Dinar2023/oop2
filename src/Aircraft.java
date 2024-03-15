@@ -1,7 +1,9 @@
-public class Aircraft  extends Vehicle {
+public class Aircraft  extends Vehicle implements Flyable {
     public Aircraft(String name) {
         super(name);
     }
+    int maxAltitude = 1000; //(максимальная высота полета),
+    boolean isFlying = false; //(флаг состояния полета
 
     @Override
     void startEngine() {
@@ -21,6 +23,7 @@ public class Aircraft  extends Vehicle {
 
     @Override
     void brake() {
+        this.speed =0;
         System.out.println(this.getName() + " Остановился");
     }
 
@@ -30,7 +33,17 @@ public class Aircraft  extends Vehicle {
                 "speed  " + this.speed + "\n" +
                 "name  " + this.getName() + "\n");
     }
-    void Land (){
-        System.out.println(getName()+ "Cflbncz");
+
+
+    @Override
+    public void takeOff() {
+        System.out.println(getName()+" Взлетает");
+        isFlying = true;
+    }
+
+    @Override
+    public void takeLand() {
+        System.out.println(getName()+" Садится");
+        isFlying = false;
     }
 }

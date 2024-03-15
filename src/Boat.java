@@ -1,9 +1,21 @@
-public class Car extends Vehicle{
-    public Car(String name) {
+public class Boat extends Vehicle implements Swimmable{
+    public Boat(String name){
         super(name);
     }
-    int fuelTank = 10;  //емкость бака
-    int fuelLevel = 6; //уровень топлива
+    int maxSpeed = 100; // (максимальная скорость на воде),
+    boolean isSailing = false; // (флаг состояния движения по воде).
+    @Override
+    public void startSwimming() {
+        isSailing=true;
+        System.out.println(getName() + " Начал плыть");
+    }
+
+    @Override
+    public void stopSwimming() {
+        isSailing=false;
+        System.out.println(getName() + " Остановился");
+    }
+
     @Override
     void startEngine() {
         System.out.println(this.getName() + " Двигатель запущен");
@@ -32,18 +44,4 @@ public class Car extends Vehicle{
                 "speed  " + this.speed +"\n"+
                 "name  " + this.getName() +"\n");
     }
-    int fuelCapacity(){
-        return fuelTank;
-    }
-    int  currentFuelLevel(){
-        return fuelLevel;
-    }
-    void refuel(int liters){
-        if (fuelLevel + liters <= fuelTank)
-        fuelLevel += liters;
-        else
-            System.out.println("Слишком много топлива");
-    }
-
-
 }
